@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Escenas/Tree.tscn" type="PackedScene" id=1]
+
+[node name="SortTrees" type="YSort"]
+
+[node name="Tree" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 179.594, 90.4568 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tree2" type="Node2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 65.9516, 103.298 )
+__meta__ = {
+"_edit_group_": true
+}

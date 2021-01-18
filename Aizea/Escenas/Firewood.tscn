@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Tilesets/Tileset-2.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.98417, 2.97379 )
+
+[node name="Firewood" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.0556793, -1.55907 )
+texture = ExtResource( 1 )
+vframes = 12
+hframes = 8
+frame = 65
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StaticBody2D"]
+position = Vector2( -3.8147e-06, 3.00678 )
+shape = SubResource( 1 )

@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Escenas/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Escenas/Background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Escenas/Log.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Escenas/Tree.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Escenas/Firewood.tscn" type="PackedScene" id=6]
+
+[node name="World" type="Node2D"]
+
+[node name="Background" parent="." instance=ExtResource( 2 )]
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="SortTrees" type="YSort" parent="YSort"]
+position = Vector2( -2.24744, -1.12373 )
+
+[node name="Tree" parent="YSort/SortTrees" instance=ExtResource( 4 )]
+position = Vector2( 141.387, 135.406 )
+
+[node name="Tree2" parent="YSort/SortTrees" instance=ExtResource( 4 )]
+position = Vector2( 65.9516, 103.298 )
+
+[node name="SortLogs" type="YSort" parent="YSort"]
+
+[node name="Log" parent="YSort/SortLogs" instance=ExtResource( 3 )]
+position = Vector2( 126.076, 72.0435 )
+
+[node name="Log2" parent="YSort/SortLogs" instance=ExtResource( 3 )]
+position = Vector2( 210.303, 120.779 )
+
+[node name="SortFirewood" type="YSort" parent="YSort"]
+position = Vector2( -3.99915, -4.3712 )
+
+[node name="Firewood" parent="YSort/SortFirewood" instance=ExtResource( 6 )]
+position = Vector2( 116.363, 32.4852 )
+
+[node name="Firewood2" parent="YSort/SortFirewood" instance=ExtResource( 6 )]
+position = Vector2( 254.536, 66.4813 )
+
+[node name="Firewood3" parent="YSort/SortFirewood" instance=ExtResource( 6 )]
+position = Vector2( 47.7046, 145.359 )
+
+[node name="Player" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 184.739, 71.2604 )

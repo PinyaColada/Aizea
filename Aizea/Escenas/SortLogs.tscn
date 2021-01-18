@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Escenas/Log.tscn" type="PackedScene" id=1]
+
+[node name="SortLogs" type="YSort"]
+
+[node name="Log" parent="." instance=ExtResource( 1 )]
+position = Vector2( 126.076, 72.0435 )
+
+[node name="Log2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 210.303, 120.779 )
