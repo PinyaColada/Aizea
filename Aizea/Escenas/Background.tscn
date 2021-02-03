@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Tilesets/Tileset-3.png" type="Texture" id=4]
-[ext_resource path="res://Escenas/Grass.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Escenas/Terrain.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Escenas/Flowers.tscn" type="PackedScene" id=6]
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "Tileset-3.png 0"

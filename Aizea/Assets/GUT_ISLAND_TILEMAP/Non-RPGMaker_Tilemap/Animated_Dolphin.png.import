@@ -1,0 +1,24 @@
+[remap]
+
+importer="texture_array"
+type="TextureArray"
+path="res://.import/Animated_Dolphin.png-b41520f82a02c08b3512a2df49c4ad4f.texarr"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Assets/GUT_ISLAND_TILEMAP/Non-RPGMaker_Tilemap/Animated_Dolphin.png"
+dest_files=[ "res://.import/Animated_Dolphin.png-b41520f82a02c08b3512a2df49c4ad4f.texarr" ]
+
+[params]
+
+compress/mode=0
+compress/no_bptc_if_rgb=false
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/srgb=2
+slices/horizontal=8
+slices/vertical=8

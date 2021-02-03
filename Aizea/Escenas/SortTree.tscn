@@ -4,14 +4,8 @@
 
 [node name="SortTrees" type="YSort"]
 
-[node name="Tree" type="Node2D" parent="." instance=ExtResource( 1 )]
+[node name="Tree" parent="." instance=ExtResource( 1 )]
 position = Vector2( 179.594, 90.4568 )
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="Tree2" type="Node2D" parent="." instance=ExtResource( 1 )]
-position = Vector2( 65.9516, 103.298 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Tree2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 70.4651, 103.616 )

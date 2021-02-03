@@ -17,6 +17,7 @@ var collision : KinematicCollision2D
 onready var anim := $PlayerAnim
 onready var anim_shadow := $PlayerAnim/ShadowAnim
 
+
 # No es obligatorio pero poned los inputs y outputs de las funciones para tener un mejor codigo
 # El metodo _physics_process se ejecuta en cada frame del juego, delta es el tiempo que ha pasado
 # entre frame y frame y el _ de delante indica que es un metodo privado, en godot no existe la 
@@ -48,6 +49,7 @@ func _physics_process(delta) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 		
+	
 
 	
 	# Move and colide mueve al personaje y deveulve un colider que es un objeto que sirve para saber
