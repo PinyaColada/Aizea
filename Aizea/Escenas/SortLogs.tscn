@@ -2,6 +2,8 @@
 
 [ext_resource path="res://Escenas/Log.tscn" type="PackedScene" id=1]
 
+
+
 [node name="SortLogs" type="YSort"]
 
 [node name="Log" parent="." instance=ExtResource( 1 )]

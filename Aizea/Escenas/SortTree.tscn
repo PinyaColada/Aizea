@@ -2,6 +2,8 @@
 
 [ext_resource path="res://Escenas/Tree.tscn" type="PackedScene" id=1]
 
+
+
 [node name="SortTrees" type="YSort"]
 
 [node name="Tree" parent="." instance=ExtResource( 1 )]
