@@ -17,7 +17,6 @@ var collision : KinematicCollision2D
 onready var anim := $PlayerAnim
 onready var anim_shadow := $PlayerAnim/ShadowAnim
 
-
 # No es obligatorio pero poned los inputs y outputs de las funciones para tener un mejor codigo
 # El metodo _physics_process se ejecuta en cada frame del juego, delta es el tiempo que ha pasado
 # entre frame y frame y el _ de delante indica que es un metodo privado, en godot no existe la 
@@ -33,9 +32,22 @@ func _physics_process(delta) -> void:
 	# Se normaliza debido que entonces moverse en diagonal haria que fueses mas rapido
 	input_vector = input_vector.normalized()
 	
-	if input_vector.x > 0 or input_vector.y > 0:
+	# Esto se encarga de hacer las animaciones 1
+	if Input.is_action_pressed("ui_right") and input_vector.y >= 0:
+		anim.flip_h = false
 		anim.set_animation("RunFront")
-	elif input_vector.x < 0 or input_vector.y < 0:
+	elif Input.is_action_pressed("ui_left") and input_vector.y >= 0:
+		anim.flip_h = true
+		anim.set_animation("RunFront")
+	elif input_vector.y < 0 and Input.is_action_pressed("ui_right"):
+		anim.flip_h = true
+		anim.set_animation("RunBack")
+	elif input_vector.y < 0 and Input.is_action_pressed("ui_left"):
+		anim.flip_h = false
+		anim.set_animation("RunBack")
+	elif input_vector.y > 0:
+		anim.set_animation("RunFront")
+	elif input_vector.y < 0:
 		anim.set_animation("RunBack")
 	else:
 		if anim.get_animation() == "RunFront":
@@ -49,10 +61,8 @@ func _physics_process(delta) -> void:
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 		
-	
 
 	
 	# Move and colide mueve al personaje y deveulve un colider que es un objeto que sirve para saber
 	# Contra que te has chocado y bastantes mas cosas
 	collision = move_and_collide(velocity * delta)
-
