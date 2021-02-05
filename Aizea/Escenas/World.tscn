@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Escenas/Terrain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Escenas/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sonidos/sonido_playa_mar.ogg" type="AudioStream" id=3]
 
 [node name="World" type="Node2D"]
 
@@ -21,3 +22,6 @@ margin_left = 113.029
 margin_top = -154.009
 margin_right = 153.029
 margin_bottom = -114.009
+
+[node name="Sonido_playa_mar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
