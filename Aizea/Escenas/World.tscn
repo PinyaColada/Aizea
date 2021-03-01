@@ -16,7 +16,7 @@ position = Vector2( 114.49, 78.3573 )
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 position = Vector2( 0.260422, -0.357285 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
+zoom = Vector2( 3, 3 )
 
 [node name="Control" parent="." instance=ExtResource( 1 )]
 margin_left = 113.029
