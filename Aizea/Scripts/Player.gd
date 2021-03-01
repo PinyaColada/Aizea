@@ -36,31 +36,61 @@ func _physics_process(delta) -> void:
 	if Input.is_action_pressed("ui_right") and input_vector.y >= 0:
 		anim.flip_h = false
 		anim.set_animation("RunFront")
+		
 	elif Input.is_action_pressed("ui_left") and input_vector.y >= 0:
 		anim.flip_h = true
 		anim.set_animation("RunFront")
+		
 	elif input_vector.y < 0 and Input.is_action_pressed("ui_right"):
 		anim.flip_h = true
 		anim.set_animation("RunBack")
+		
 	elif input_vector.y < 0 and Input.is_action_pressed("ui_left"):
 		anim.flip_h = false
 		anim.set_animation("RunBack")
+		
 	elif input_vector.y > 0:
 		anim.set_animation("RunFront")
+		
 	elif input_vector.y < 0:
 		anim.set_animation("RunBack")
-	else:
 		if anim.get_animation() == "RunFront":
 			anim.set_animation("IdleFront")
+			
 		elif anim.get_animation() == "RunBack":
 			anim.set_animation("IdleBack")
+			
+
 	
+	#walking sound
+	var strm = $Running.stream as AudioStreamOGGVorbis
+	strm.set_loop(false)
+	
+	if Input.is_action_just_pressed("ui_right"):
+		$Running.play()
+	elif Input.is_action_just_pressed("ui_left"):
+		$Running.play()
+	elif Input.is_action_just_pressed("ui_up"):
+		$Running.play()
+	elif Input.is_action_just_pressed("ui_down"):
+		$Running.play()
+	
+	if Input.is_action_just_released("ui_right"):
+		$Running.stop()
+	elif Input.is_action_just_released("ui_left"):
+		$Running.play()
+	elif Input.is_action_just_released("ui_up"):
+		$Running.play()
+	elif Input.is_action_just_released("ui_down"):
+		$Running.play()
+		
+		
 	# Acceleracion y freno
 	if input_vector != Vector2.ZERO:
 		velocity = velocity.move_toward(input_vector * MAX_SPEED, ACCELERATION * delta)
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
-		
+	
 
 	
 	# Move and colide mueve al personaje y deveulve un colider que es un objeto que sirve para saber

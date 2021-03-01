@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/sonido_gaviotas.ogg-b291d63258db2fb23c7cd8b747963757.oggstr"
+
+[deps]
+
+source_file="res://Sonidos/sonido_gaviotas.ogg"
+dest_files=[ "res://.import/sonido_gaviotas.ogg-b291d63258db2fb23c7cd8b747963757.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

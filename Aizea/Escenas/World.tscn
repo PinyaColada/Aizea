@@ -1,11 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Escenas/Terrain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Escenas/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sonidos/sonido_playa_mar.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sonidos/bosque_ambiente.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sonidos/sonido_playa_mar.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Sonidos/walking_final.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/HealthBar/barHorizontal_green.png" type="Texture" id=6]
+[ext_resource path="res://Assets/HealthBar/barHorizontal_red.png" type="Texture" id=7]
+[ext_resource path="res://Assets/HealthBar/barHorizontal_yellow.png" type="Texture" id=8]
+[ext_resource path="res://Assets/HealthBar/heart.png" type="Texture" id=9]
+[ext_resource path="res://Assets/HealthBar/karma.png" type="Texture" id=10]
+[ext_resource path="res://Assets/HealthBar/ham.png" type="Texture" id=11]
+[ext_resource path="res://Escenas/Healthbar.gd" type="Script" id=12]
+[ext_resource path="res://Escenas/Foodbar.gd" type="Script" id=13]
+[ext_resource path="res://Escenas/Karmabar.gd" type="Script" id=14]
 
 [node name="World" type="Node2D"]
-position = Vector2( 49.0815, 16.0458 )
 
 [node name="YSort" type="YSort" parent="."]
 position = Vector2( 20, -44.5 )
@@ -15,14 +25,108 @@ position = Vector2( 114.49, 78.3573 )
 
 [node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
 position = Vector2( 0.260422, -0.357285 )
+z_index = 100
 current = true
 zoom = Vector2( 3, 3 )
 
+[node name="Healthbar" type="Control" parent="KinematicBody2D/Camera2D"]
+margin_left = -114.75
+margin_top = -78.0
+margin_right = -74.7504
+margin_bottom = -38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Healthbar" type="TextureProgress" parent="KinematicBody2D/Camera2D/Healthbar"]
+margin_left = -109.135
+margin_top = -45.2973
+margin_right = 90.8649
+margin_bottom = -19.2973
+rect_scale = Vector2( 0.311021, 0.376609 )
+value = 100.0
+texture_progress = ExtResource( 6 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Karmabar" type="TextureProgress" parent="KinematicBody2D/Camera2D/Healthbar"]
+margin_left = -108.918
+margin_top = -32.6419
+margin_right = 91.0825
+margin_bottom = -6.6419
+rect_scale = Vector2( 0.311021, 0.376609 )
+value = 100.0
+texture_progress = ExtResource( 7 )
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Foodbar" type="TextureProgress" parent="KinematicBody2D/Camera2D/Healthbar"]
+margin_left = -108.645
+margin_top = -21.1298
+margin_right = 91.3554
+margin_bottom = 4.87015
+rect_scale = Vector2( 0.311021, 0.376609 )
+value = 100.0
+texture_progress = ExtResource( 8 )
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthbarLogo" type="TextureRect" parent="KinematicBody2D/Camera2D/Healthbar"]
+margin_left = -120.416
+margin_top = -45.0817
+margin_right = 903.584
+margin_bottom = 978.918
+rect_scale = Vector2( 0.00848371, 0.00844064 )
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="KarmaBarLogo" type="TextureRect" parent="KinematicBody2D/Camera2D/Healthbar"]
+margin_left = -119.754
+margin_top = -33.1628
+margin_right = 904.246
+margin_bottom = 990.837
+rect_scale = Vector2( 0.00848371, 0.00844064 )
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FoodBarLogo" type="TextureRect" parent="KinematicBody2D/Camera2D/Healthbar"]
+margin_left = -121.078
+margin_top = -20.9789
+margin_right = 1158.92
+margin_bottom = 1003.02
+rect_scale = Vector2( 0.00848371, 0.00844064 )
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Running" type="AudioStreamPlayer" parent="KinematicBody2D"]
+stream = ExtResource( 5 )
+volume_db = 1.0
+pitch_scale = 1.29
+
 [node name="Control" parent="." instance=ExtResource( 1 )]
 margin_left = 113.029
-margin_top = -155.198
+margin_top = -154.009
 margin_right = 153.029
-margin_bottom = -115.198
+margin_bottom = -114.009
 
 [node name="Sonido_playa_mar" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -1.0
+autoplay = true
+
+[node name="Gaviotas" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -4.0
+autoplay = true
