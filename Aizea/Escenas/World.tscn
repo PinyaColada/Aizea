@@ -27,7 +27,7 @@ position = Vector2( 114.49, 78.3573 )
 position = Vector2( 0.260422, -0.357285 )
 z_index = 100
 current = true
-zoom = Vector2( 3, 3 )
+zoom = Vector2( 1.5, 1.5 )
 
 [node name="Healthbar" type="Control" parent="KinematicBody2D/Camera2D"]
 margin_left = -114.75

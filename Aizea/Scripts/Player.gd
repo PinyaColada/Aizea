@@ -17,6 +17,9 @@ var collision : KinematicCollision2D
 onready var anim := $PlayerAnim
 onready var anim_shadow := $PlayerAnim/ShadowAnim
 
+var string = ""
+var llevarHacha = false
+
 # No es obligatorio pero poned los inputs y outputs de las funciones para tener un mejor codigo
 # El metodo _physics_process se ejecuta en cada frame del juego, delta es el tiempo que ha pasado
 # entre frame y frame y el _ de delante indica que es un metodo privado, en godot no existe la 
@@ -24,44 +27,77 @@ onready var anim_shadow := $PlayerAnim/ShadowAnim
 func _physics_process(delta) -> void:
 	var input_vector = Vector2.ZERO
 	
-	# El metodo get_action_strength sirve para tener 0 o 1 dependiendo de si esta presionado
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	# Cabe destacar que en godot arriba es negativo y abajo es positivo para facilitar el trabajo con 
-	# joysticks que por razones que no comprendo funcionan asi
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	# Se normaliza debido que entonces moverse en diagonal haria que fueses mas rapido
-	input_vector = input_vector.normalized()
+	if anim.get_animation() == "AttackAxeFront" and anim.get_frame() == 7:
+		anim.set_animation("IdleAxeFront")
+		
+	if anim.get_animation() == "AttackAxeBack" and anim.get_frame() == 7:
+		anim.set_animation("IdleAxeBack")
 	
-	# Esto se encarga de hacer las animaciones 1
-	if Input.is_action_pressed("ui_right") and input_vector.y >= 0:
-		anim.flip_h = false
-		anim.set_animation("RunFront")
-		
-	elif Input.is_action_pressed("ui_left") and input_vector.y >= 0:
-		anim.flip_h = true
-		anim.set_animation("RunFront")
-		
-	elif input_vector.y < 0 and Input.is_action_pressed("ui_right"):
-		anim.flip_h = true
-		anim.set_animation("RunBack")
-		
-	elif input_vector.y < 0 and Input.is_action_pressed("ui_left"):
-		anim.flip_h = false
-		anim.set_animation("RunBack")
-		
-	elif input_vector.y > 0:
-		anim.set_animation("RunFront")
-		
-	elif input_vector.y < 0:
-		anim.set_animation("RunBack")
-		if anim.get_animation() == "RunFront":
-			anim.set_animation("IdleFront")
-			
-		elif anim.get_animation() == "RunBack":
-			anim.set_animation("IdleBack")
-			
+	if Input.is_action_just_pressed("attack") and llevarHacha and (anim.get_animation() == "IdleAxeFront"):
+		anim.set_animation("AttackAxeFront")
+	elif Input.is_action_just_pressed("attack") and llevarHacha and (anim.get_animation() == "IdleAxeBack"):
+		anim.set_animation("AttackAxeBack")
+	else:
 
+		# El metodo get_action_strength sirve para tener 0 o 1 dependiendo de si esta presionado
+		input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+		# Cabe destacar que en godot arriba es negativo y abajo es positivo para facilitar el trabajo con 
+		# joysticks que por razones que no comprendo funcionan asi
+		input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		# Se normaliza debido que entonces moverse en diagonal haria que fueses mas rapido
+		input_vector = input_vector.normalized()
 	
+	if Input.is_action_just_pressed("EquiparHacha"):
+		llevarHacha = not llevarHacha
+	# Esto se encarga de hacer las animaciones 1
+	if Input.is_action_pressed("ui_right"):
+		anim.flip_h = false
+	elif Input.is_action_pressed("ui_left"):
+		anim.flip_h = true
+	if not llevarHacha:		
+		if Input.is_action_pressed("ui_right") and input_vector.y >= 0:
+			anim.flip_h = false
+			anim.set_animation("RunFront")
+		elif Input.is_action_pressed("ui_left") and input_vector.y >= 0:
+			anim.flip_h = true
+			anim.set_animation("RunFront")
+		elif input_vector.y < 0 and Input.is_action_pressed("ui_right"):
+			anim.flip_h = true
+			anim.set_animation("RunBack")
+		elif input_vector.y < 0 and Input.is_action_pressed("ui_left"):
+			anim.flip_h = false
+			anim.set_animation("RunBack")
+		elif input_vector.y < 0 and input_vector.x == 0:
+			anim.set_animation("RunBack")
+		elif input_vector.y > 0 and input_vector.x == 0:
+			anim.set_animation("RunFront")
+		else:
+			if anim.get_animation() == "RunFront":
+				anim.set_animation("IdleFront")
+			elif anim.get_animation() == "RunBack":
+				anim.set_animation("IdleBack")
+	else:	
+		if Input.is_action_pressed("ui_right") and input_vector.y >= 0:
+			anim.flip_h = false
+			anim.set_animation("RunAxeFront")
+		elif Input.is_action_pressed("ui_left") and input_vector.y >= 0:
+			anim.flip_h = true
+			anim.set_animation("RunAxeFront")
+		elif input_vector.y < 0 and Input.is_action_pressed("ui_right"):
+			anim.flip_h = true
+			anim.set_animation("RunAxeBack")
+		elif input_vector.y < 0 and Input.is_action_pressed("ui_left"):
+			anim.flip_h = false
+			anim.set_animation("RunAxeBack")
+		elif input_vector.y < 0 and input_vector.x == 0:
+			anim.set_animation("RunAxeBack")
+		elif input_vector.y > 0 and input_vector.x == 0:
+			anim.set_animation("RunAxeFront")
+		else:
+			if anim.get_animation() == "RunAxeFront":
+				anim.set_animation("IdleAxeFront")
+			elif anim.get_animation() == "RunAxeBack":
+				anim.set_animation("IdleAxeBack")
 	#walking sound
 	var strm = $Running.stream as AudioStreamOGGVorbis
 	strm.set_loop(false)
