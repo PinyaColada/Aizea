@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Escenas/Terrain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Escenas/Player.tscn" type="PackedScene" id=2]
@@ -14,22 +14,23 @@
 [ext_resource path="res://Escenas/Healthbar.gd" type="Script" id=12]
 [ext_resource path="res://Escenas/Foodbar.gd" type="Script" id=13]
 [ext_resource path="res://Escenas/Karmabar.gd" type="Script" id=14]
+[ext_resource path="res://Escenas/ArbolDestruible.tscn" type="PackedScene" id=15]
 
 [node name="World" type="Node2D"]
 
 [node name="YSort" type="YSort" parent="."]
 position = Vector2( 20, -44.5 )
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
-position = Vector2( 114.49, 78.3573 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 529.795, -363.376 )
 
-[node name="Camera2D" type="Camera2D" parent="KinematicBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( 0.260422, -0.357285 )
 z_index = 100
 current = true
 zoom = Vector2( 1.5, 1.5 )
 
-[node name="Healthbar" type="Control" parent="KinematicBody2D/Camera2D"]
+[node name="Healthbar" type="Control" parent="Player/Camera2D"]
 margin_left = -114.75
 margin_top = -78.0
 margin_right = -74.7504
@@ -38,7 +39,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Healthbar" type="TextureProgress" parent="KinematicBody2D/Camera2D/Healthbar"]
+[node name="Healthbar" type="TextureProgress" parent="Player/Camera2D/Healthbar"]
 margin_left = -109.135
 margin_top = -45.2973
 margin_right = 90.8649
@@ -51,7 +52,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Karmabar" type="TextureProgress" parent="KinematicBody2D/Camera2D/Healthbar"]
+[node name="Karmabar" type="TextureProgress" parent="Player/Camera2D/Healthbar"]
 margin_left = -108.918
 margin_top = -32.6419
 margin_right = 91.0825
@@ -64,7 +65,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Foodbar" type="TextureProgress" parent="KinematicBody2D/Camera2D/Healthbar"]
+[node name="Foodbar" type="TextureProgress" parent="Player/Camera2D/Healthbar"]
 margin_left = -108.645
 margin_top = -21.1298
 margin_right = 91.3554
@@ -77,7 +78,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HealthbarLogo" type="TextureRect" parent="KinematicBody2D/Camera2D/Healthbar"]
+[node name="HealthbarLogo" type="TextureRect" parent="Player/Camera2D/Healthbar"]
 margin_left = -120.416
 margin_top = -45.0817
 margin_right = 903.584
@@ -88,7 +89,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="KarmaBarLogo" type="TextureRect" parent="KinematicBody2D/Camera2D/Healthbar"]
+[node name="KarmaBarLogo" type="TextureRect" parent="Player/Camera2D/Healthbar"]
 margin_left = -119.754
 margin_top = -33.1628
 margin_right = 904.246
@@ -99,7 +100,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FoodBarLogo" type="TextureRect" parent="KinematicBody2D/Camera2D/Healthbar"]
+[node name="FoodBarLogo" type="TextureRect" parent="Player/Camera2D/Healthbar"]
 margin_left = -121.078
 margin_top = -20.9789
 margin_right = 1158.92
@@ -110,7 +111,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Running" type="AudioStreamPlayer" parent="KinematicBody2D"]
+[node name="Running" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource( 5 )
 volume_db = 1.0
 pitch_scale = 1.29
@@ -130,3 +131,6 @@ autoplay = true
 stream = ExtResource( 3 )
 volume_db = -4.0
 autoplay = true
+
+[node name="ArbolDestruible" parent="." instance=ExtResource( 15 )]
+position = Vector2( 480.833, -384.666 )
